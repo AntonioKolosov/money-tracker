@@ -10,7 +10,8 @@ func main() {
 
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
+			"user_id": 123,
+			"status":  "active",
 		})
 	})
 
