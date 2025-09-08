@@ -13,25 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
   # Permissions for GitHub token
-  permissions:
-    contents: read
-    packages: write
+    permissions:
+      contents: read
+      packages: write
 
-  steps:
-    # Download all codes to our virtual machine
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    steps:
+      # Download all codes to our virtual machine
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Log in to container registry
-      uses: docker/login-action@v3
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-      
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        push: true
-        tags: ghcr.io/${{ github.repository }}:latest
+      - name: Log in to container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository }}:latest
